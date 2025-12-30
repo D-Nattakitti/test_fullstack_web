@@ -1,0 +1,13 @@
+import requests
+import json
+
+url = "https://fakestoreapi.com/products"
+response = requests.get(url)
+
+if response.status_code == 200:
+    data = response.json()
+    with open('data.json', 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+    print("ดึงข้อมูลสำเร็จและบันทึกลงใน data.json")
+elif response.status_code != 200:
+    print(f"เกิดข้อผิดพลาดในการดึงข้อมูล")
